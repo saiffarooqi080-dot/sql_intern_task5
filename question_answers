@@ -1,0 +1,39 @@
+# 🎤 SQL Joins - Interview Questions & Answers
+
+## [cite_start]1. Difference between INNER and LEFT JOIN? 
+* **INNER JOIN**: Returns only rows that have **matching values** in the join columns of both tables. Non-matching records are excluded from the result set.
+* **LEFT JOIN (or LEFT OUTER JOIN)**: Returns **all rows from the left table** and the matching rows from the right table. If a row in the left table has no match in the right table, the columns from the right table will contain `NULL` values.
+
+## [cite_start]2. What is a FULL OUTER JOIN? 
+A **FULL OUTER JOIN** returns all rows from the left table and all rows from the right table. It combines the results of both `LEFT` and `RIGHT` joins. If a row in one table does not have a match in the other, the columns from the non-matching table will have `NULL` values.
+
+## [cite_start]3. Can joins be nested? [cite: 15]
+Yes, joins can be nested. While a single `SELECT` statement can chain multiple joins (e.g., `A JOIN B JOIN C`), the term "nested joins" often refers to using a subquery (a nested `SELECT` statement) that involves a join, or using parentheses to explicitly control the order of execution for multiple joins.
+
+## [cite_start]4. How to join more than 2 tables? 
+You join more than two tables by simply **chaining** the join clauses. Each subsequent table requires its own `JOIN` keyword and `ON` condition, linking it either to the immediately preceding table or to an earlier table in the query.
+* **Example Structure:** `SELECT ... FROM TableA INNER JOIN TableB ON ... INNER JOIN TableC ON ...`
+
+## [cite_start]5. What is a cross join? [cite: 17]
+A **CROSS JOIN** produces the **Cartesian Product** of the tables involved. Every row from the first table is combined with every row from the second table. If Table A has $N$ rows and Table B has $M$ rows, the result set will have $N \times M$ rows.
+
+## [cite_start]6. What is a natural join? [cite: 18]
+A **NATURAL JOIN** is a type of join that automatically joins two tables based on **all columns that have the same name** in both tables. It is often discouraged in production environments because it relies on column naming conventions and can produce unexpected results if column names change.
+
+## [cite_start]7. Can you join tables without foreign key? 
+Yes. While foreign keys are used to define formal relationships and enforce data integrity, the SQL `JOIN` operation only requires a **logical join condition** specified in the `ON` clause. This condition can be based on any columns, or even complex expressions, as long as they can link the rows of the two tables.
+
+## [cite_start]8. What is a self-join? 
+A **Self-Join** is a query that joins a table to **itself**. It requires using table aliases to treat the single table as two separate entities in the query. It is typically used to compare rows within the same table, such as finding employees who report to the same manager, or, in our example, finding authors with the same first name.
+
+## [cite_start]9. What causes Cartesian product? 
+The Cartesian Product is caused by one of two scenarios:
+1.  **Explicit CROSS JOIN**: Using the `CROSS JOIN` keyword.
+2.  **Missing or Flawed Join Condition**: When using an `INNER JOIN` (or an implicit join in a `WHERE` clause) but **failing to specify a join condition** or using a condition that evaluates to true for all pairs of rows.
+
+## [cite_start]10. How to optimize joins? [cite: 22]
+Join optimization focuses on reducing the data processed. Key techniques include:
+* **Indexing:** Ensure that the columns used in the join conditions (`ON` clause) and `WHERE` clauses are properly **indexed**.
+* **Filtering Early:** Apply `WHERE` clause filters to tables *before* the join occurs to reduce the number of rows being joined.
+* **Correct Join Type:** Use `INNER JOIN` over `OUTER JOIN` when possible, as inner joins are often faster.
+* **Join Order:** In some database systems, joining the table with fewer rows first can improve performance.
