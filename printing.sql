@@ -1,0 +1,107 @@
+-- create database printing;
+-- CREATE TABLE Authors (
+--     AuthorID INT PRIMARY KEY,
+--     FirstName VARCHAR(50) NOT NULL,
+--     LastName VARCHAR(50) NOT NULL
+-- );
+-- CREATE TABLE Books (
+--     BookID INT PRIMARY KEY,
+--     Title VARCHAR(100) NOT NULL,
+--     AuthorID INT,
+--     PublicationYear INT,
+--     FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+-- );
+-- CREATE TABLE Publishers (
+--     PublisherID INT PRIMARY KEY,
+--     Name VARCHAR(100) NOT NULL,
+--     City VARCHAR(50)
+-- );
+-- INSERT INTO Authors (AuthorID, FirstName, LastName) VALUES
+-- (1, 'Jane', 'Austen'),
+-- (2, 'George', 'Orwell'),
+-- (3, 'Mark', 'Twain'),
+-- (4, 'Unpublished', 'Author'); 
+-- INSERT INTO Books (BookID, Title, AuthorID, PublicationYear) VALUES
+-- (101, 'Pride and Prejudice', 1, 1813),
+-- (102, '1984', 2, 1949),
+-- (103, 'Animal Farm', 2, 1945),
+-- (104, 'The Great Gatsby', NULL, 1925);
+-- INSERT INTO Publishers (PublisherID, Name, City) VALUES
+-- (501, 'Classic Press', 'London'),
+-- (502, 'Modern Books', 'New York'),
+-- (503, 'Local Prints', 'Paris');
+-- SELECT
+--     B.Title,
+--     A.FirstName || ' ' || A.LastName AS AuthorName
+-- FROM
+--     Books B
+-- INNER JOIN
+--     Authors A ON B.AuthorID = A.AuthorID;
+-- SELECT
+--     A.FirstName || ' ' || A.LastName AS AuthorName,
+--     B.Title
+-- FROM
+--     Authors A
+-- LEFT JOIN
+--     Books B ON A.AuthorID = B.AuthorID;
+-- SELECT
+--     B.Title,
+--     A.FirstName || ' ' || A.LastName AS AuthorName
+-- FROM
+--     Authors A
+-- RIGHT JOIN
+--     Books B ON A.AuthorID = B.AuthorID;
+-- SELECT
+--     A.AuthorID,
+--     CONCAT(A.FirstName, ' ', A.LastName) AS AuthorName,
+--     B.BookID,
+--     B.Title
+-- FROM
+--     Authors A
+-- LEFT JOIN
+--     Books B ON A.AuthorID = B.AuthorID
+
+-- UNION ALL
+-- SELECT
+--     A.AuthorID,
+--     CONCAT(A.FirstName, ' ', A.LastName) AS AuthorName,
+--     B.BookID,
+--     B.Title
+-- FROM
+--     Books B
+-- LEFT JOIN
+--     Authors A ON B.AuthorID = A.AuthorID
+-- WHERE
+--     A.AuthorID IS NULL;
+-- SELECT
+--     A.FirstName,
+--     B.Title
+-- FROM
+--     Authors A
+-- INNER JOIN
+--     Books B ON A.AuthorID = B.AuthorID;
+-- SELECT
+--     A.FirstName || ' ' || A.LastName AS Author,
+--     P.Name AS Publisher
+-- FROM
+--     Authors A
+-- CROSS JOIN
+--     Publishers P;
+-- SELECT
+--     A1.FirstName,
+--     A1.LastName AS Author1,
+--     A2.LastName AS Author2
+-- FROM
+--     Authors A1
+-- INNER JOIN
+--     Authors A2 ON A1.FirstName = A2.FirstName 
+--                 AND A1.AuthorID <> A2.AuthorID;
+-- SELECT
+--     B.Title,
+--     P.Name AS Publisher,
+--     P.City
+-- FROM
+--     Books B
+-- INNER JOIN
+--     Publishers P ON B.PublicationYear > 1900 AND P.City = 'New York';
+
